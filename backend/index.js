@@ -364,11 +364,10 @@ app.get('/username', (req, res) => {
 
   app.get('/products', async (req, res)=>{
     try{
-      
       const products = await Products.findAll().then(products => products)
       res.json({products: products});
-    }catch(err){
-      res.send('an error occured' + err);
+    }catch{
+      res.send('an error occured');
     }
   })
 
