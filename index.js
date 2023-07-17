@@ -1,21 +1,21 @@
 const express = require('express');
-const passport = require('passport')
+const passport = require('passport');
 const { Op } = require('sequelize');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const { v4: uuidv4 } = require('uuid')
-const cookieParser = require('cookie-parser');;
-const cors= require('cors');
+const { v4: uuidv4 } = require('uuid');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const sequelize = require('./database/database');
 const sgMail = require('@sendgrid/mail');
 
 require('dotenv').config();
 
-console.log(process.env.DIALECT)
-console.log(process.env.PORT)
-console.log(process.env.PG_CONNECTION_STRING)
+console.log(process.env.DIALECT);
+console.log(process.env.PORT);
+console.log(process.env.PG_CONNECTION_STRING);
 
 const Orders = require('./models/orders');
 const Customers = require('./models/customers');
@@ -24,34 +24,31 @@ const Categories = require('./models/categories');
 const Order_details = require('./models/order_details');
 const EmailConfirm = require('./models/emailconfirm');
 
-const port  = process.env.PORT;
+const port = process.env.PORT;
 const app = express();
-app.use(cors({
-  origin: process.env.LIST_PORT,
-  credentials: true
-}));
 
+app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-app.use(cookieParser());
-
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
   secret: 'session',
   resave: false,
   saveUninitialized: false,
-  cookie:{
+  cookie: {
     secure: true,
     sameSite: 'none',
-    maxAge: 1000*60*60*24
+    maxAge: 1000 * 60 * 60 * 24
   }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cookieParser('session'))
 
+app.use(cookieParser());
+
+app.use(cors({
+  origin: process.env.LIST_PORT,
+  credentials: true
+}));
 
 passport.use(new LocalStrategy(
   {
