@@ -135,7 +135,7 @@ app.use(express.json());
   function(req, res) {
     res.clearCookie('sessionId');
     res.cookie('sessionId', req.sessionID);
-    res.json({message:'You are authorized'});
+    res.json({sessionId: req.sessionID});
 
 });
   
