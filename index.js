@@ -135,21 +135,9 @@ app.use(express.json());
   function(req, res) {
     res.clearCookie('sessionId');
     res.cookie('sessionId', req.sessionID);
-    res.json({sessionId: req.sessionID});
-
+    res.json({message: 'You are authenticated'});
 });
   
-
-  app.post('/categories', async (req, res)=>{
-    try{
-      const categoryId = req.body.category_id;
-      const category = await Categories.findByPk(categoryId);
-      const products = await Products.findAll({where:{category_id: categoryId}});
-      res.render('category.ejs', {category: category.name, products: products})
-    }catch{
-      res.send('an error occured')
-    }
-  });
   app.post('/verifyemail', async (req, res)=>{
     try{
       let email = req.body.email;
