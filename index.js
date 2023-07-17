@@ -13,9 +13,6 @@ const sgMail = require('@sendgrid/mail');
 
 require('dotenv').config();
 
-console.log(process.env.DIALECT);
-console.log(process.env.PORT);
-console.log(process.env.PG_CONNECTION_STRING);
 
 const Orders = require('./models/orders');
 const Customers = require('./models/customers');
@@ -35,7 +32,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: true,
-    sameSite: 'none',
+    sameSite: 'Strict',
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
   }
