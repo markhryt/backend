@@ -133,14 +133,8 @@ app.use(express.json());
  
   app.post('/login',passport.authenticate('local'),
   function(req, res) {
-    res.cookie('sessionId', req.sessionID, {
-      domain: 'markse-commerce.netlify.app',
-      secure: true,
-      sameSite: 'none',
-      maxAge: 1000 * 60 * 60 * 24,
-      httpOnly: true, });
-    res.json({message: 'You are authenticated'});
-});
+    res.json({sessionId: req.sessionID});
+  });
   
   app.post('/verifyemail', async (req, res)=>{
     try{
