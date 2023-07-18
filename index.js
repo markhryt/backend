@@ -133,7 +133,7 @@ app.use(express.json());
  
   app.post('/login',passport.authenticate('local'),
   function(req, res) {
-    res.cookie('sessionId', req.sessionID, { domain: 'markse-commerce.netlify.app', secure: true, sameSite: 'none' });
+    res.cookie('sessionId', req.sessionID);
     res.json({message: 'You are authenticated'});
 });
   
