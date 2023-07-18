@@ -32,7 +32,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: true,
-    sameSite: 'None',
+    sameSite: 'none',
     maxAge: 1000 * 60 * 60 * 24,
     httpOnly: true,
   }
@@ -133,7 +133,7 @@ app.use(express.json());
  
   app.post('/login',passport.authenticate('local'),
   function(req, res) {
-    res.cookie('sessionId', req.sessionID);
+    res.cookie('sessionId', req.sessionID, { domain: 'markse-commerce.netlify.app', secure: true, sameSite: 'none' });
     res.json({message: 'You are authenticated'});
 });
   
