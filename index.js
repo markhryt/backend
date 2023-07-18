@@ -133,6 +133,7 @@ app.use(express.json());
  
   app.post('/login',passport.authenticate('local'),
   function(req, res) {
+    res.clearCookie('sessionId');
     res.json({sessionId: req.sessionID});
   });
   
@@ -174,7 +175,7 @@ app.use(express.json());
 
   app.post('/logout', (req, res) => {
     // Destroy the session
-    res.clearCookie("sessionId")
+    res.clearCookie("sessionId");
     res.json({message: "Logout"})
   });
   
