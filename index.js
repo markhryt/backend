@@ -236,9 +236,9 @@ app.get('/isLoggedIn', function ( req, res){
             res.send(error);
       }
       if(session){
-        res.send({logged: true})
+        res.status(200).send({logged: true})
       }else{
-          res.send({
+          res.status(200).send({
             logged: false})
       }
     });
@@ -335,11 +335,11 @@ app.get('/username', (req, res) => {
       let userId = session.passport.user;
       Customers.findByPk(userId).then((user)=>{
         if(user.full_name){
-          res.json({
+          res.status(200).json({
             userName: user.full_name
           })
         }else{
-          res.json({userName: "Customer"});
+          res.status(200).json({userName: "Customer"});
         }
       })
     }else{
