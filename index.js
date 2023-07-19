@@ -228,7 +228,7 @@ app.get('/isLoggedIn', function ( req, res){
 
   try{
     const sessionId = req.cookies.sessionId;
-    console.log(req);
+    console.log(req.cookies.sessionId);
     console.log('here!!!!!!!!!!!!!!!!');
     req.sessionStore.get(sessionId, (error, session) => {
       if (error) {
