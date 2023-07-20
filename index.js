@@ -176,6 +176,7 @@ app.use(express.json());
   app.post('/logout', (req, res) => {
     // Destroy the session
     res.clearCookie("sessionId");
+    res.cookie('sessionId', '', { domain: 'markse-commerce.netlify.app', secure: true, sameSite: 'none' });
     res.json({message: "Logout"})
   });
   
