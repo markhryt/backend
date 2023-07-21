@@ -182,6 +182,7 @@ app.use(express.json());
   
   app.post('/placeorder', async (req, res)=>{
     try{
+      console.log(req)
       const sessionId = req.cookies.sessionId;
       req.sessionStore.get(sessionId, async (error, session) => {
         if (error) {
