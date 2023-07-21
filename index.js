@@ -181,7 +181,6 @@ app.use(express.json());
   });
   
   app.post('/placeorder', async (req, res)=>{
-    console.log(req.cookies.sessionId);
     try{
       const sessionId = req.cookies.sessionId;
       req.sessionStore.get(sessionId, async (error, session) => {
