@@ -133,7 +133,7 @@ app.use(express.json());
  
   app.post('/login',passport.authenticate('local'),
   function(req, res) {
-    res.cookie('sessionId', req.sessionID, { domain: 'markse-commerce.netlify.app', secure: true, sameSite: 'none', maxAge: 1000 * 60 * 60 * 24});
+    res.cookie('sessionId', req.sessionID, { secure: true, sameSite: 'none', maxAge: 1000 * 60 * 60 * 24});
     res.json({sessionId: req.sessionID});
   });
   
@@ -176,7 +176,7 @@ app.use(express.json());
   app.post('/logout', (req, res) => {
     // Destroy the session
     res.clearCookie("sessionId");
-    res.cookie('sessionId', '', { domain: 'markse-commerce.netlify.app', secure: true, sameSite: 'none' });
+    res.cookie('sessionId', '', { secure: true, sameSite: 'none' });
     res.json({message: "Logout"})
   });
   
